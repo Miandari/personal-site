@@ -49,6 +49,9 @@ export const PROJECTS = [
     ],
     tags: ["MCP", "RAG", "Python", "LangChain"],
     type: "project" as const,
+    links: {
+      github: "https://github.com/Miandari/youtube-knowledge-base-mcp",
+    },
   },
   {
     id: 3,
@@ -60,6 +63,9 @@ export const PROJECTS = [
     ],
     tags: ["LangGraph", "LLMs", "REST API", "Research Methods"],
     type: "project" as const,
+    links: {
+      github: "https://github.com/Miandari/adaptive-qualitative-interviewer",
+    },
   },
   {
     id: 4,
