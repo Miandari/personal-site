@@ -51,6 +51,7 @@ export const PROJECTS = [
     type: "project" as const,
     links: {
       github: "https://github.com/Miandari/youtube-knowledge-base-mcp",
+      github2: "https://github.com/Miandari/lit-prism",
     },
   },
   {

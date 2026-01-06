@@ -43,11 +43,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         {project.links && (
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             {project.links.github && (
               <Button asChild variant="ghost" size="lg">
                 <a
                   href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="mr-2 h-5 w-5" /> GitHub
+                </a>
+              </Button>
+            )}
+            {project.links.github2 && (
+              <Button asChild variant="ghost" size="lg">
+                <a
+                  href={project.links.github2}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

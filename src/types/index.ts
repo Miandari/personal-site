@@ -6,6 +6,7 @@ export interface Project {
   type: "research" | "project" | "product";
   links?: {
     github?: string;
+    github2?: string;
     live?: string;
     paper?: string;
   };
