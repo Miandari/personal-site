@@ -20,9 +20,9 @@ export function SignupForm() {
         <div className="space-y-1">
           <p className="text-lg font-semibold">You’re signed up.</p>
           <p className="text-muted-foreground">
-            {state.emailSent ? "We sent a confirmation to " : "We’ll reach you at "}
-            <span className="font-medium text-foreground break-all">{state.email}</span>.
-            {" "}We’ll be in touch with details before the workshop.
+            We’ll be in touch at{" "}
+            <span className="font-medium text-foreground break-all">{state.email}</span>{" "}
+            before the workshop.
           </p>
         </div>
       </div>

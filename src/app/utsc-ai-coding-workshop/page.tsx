@@ -51,7 +51,7 @@ export default function WorkshopPage() {
               {WORKSHOP.title}
             </h1>
             <p
-              className="mb-8 text-xl text-muted-foreground animate-fade-in-up"
+              className="mb-8 text-xl text-balance text-muted-foreground animate-fade-in-up"
               style={{ animationDelay: "0.1s", animationFillMode: "backwards" }}
             >
               {WORKSHOP.tagline}

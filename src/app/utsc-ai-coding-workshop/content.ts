@@ -17,14 +17,4 @@ export const WORKSHOP = {
     "Catching mistakes and making your workflow more reliable",
     "Data security and participant confidentiality",
   ],
-  confirmationEmail: {
-    from: "UTSC AI Coding Agent Workshop <workshop@miandari.dev>",
-    subject: "You’re signed up for the UTSC AI Coding Agent Workshop",
-    paragraphs: [
-      "Thanks for signing up for the UTSC AI Coding Agent Workshop on Friday, November 13, 1:00–3:00 PM, in SW316 at UTSC.",
-      "You’re on the list. We’ll be in touch before the workshop about what to set up on your laptop.",
-      "Questions? Just reply to this email.",
-      "Adam & Mostafa",
-    ],
-  },
 } as const;
