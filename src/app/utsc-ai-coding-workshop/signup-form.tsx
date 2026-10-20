@@ -18,7 +18,9 @@ export function SignupForm() {
       >
         <CircleCheck className="mt-0.5 size-6 shrink-0 text-primary" />
         <div className="space-y-1">
-          <p className="text-lg font-semibold">You’re signed up.</p>
+          <p className="text-lg font-semibold">
+            {state.alreadySignedUp ? "You’re already signed up." : "You’re signed up."}
+          </p>
           <p className="text-muted-foreground">
             We’ll be in touch at{" "}
             <span className="font-medium text-foreground break-all">{state.email}</span>{" "}

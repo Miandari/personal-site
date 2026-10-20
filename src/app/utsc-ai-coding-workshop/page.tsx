@@ -9,7 +9,10 @@ const mono = IBM_Plex_Mono({
   variable: "--font-mono",
 });
 
-const description = `${WORKSHOP.tagline} A two-hour, hands-on workshop on ${WORKSHOP.details[0].value}.`;
+// Signing up can retry a slow Google Apps Script a few times (see actions.ts).
+export const maxDuration = 60;
+
+const description =`${WORKSHOP.tagline} A two-hour, hands-on workshop on ${WORKSHOP.details[0].value}.`;
 
 export const metadata: Metadata = {
   title: { absolute: WORKSHOP.title },

@@ -5,8 +5,11 @@ see `next.config.ts`). Everything for the workshop lives in this folder, and the
 copy is in `content.ts`.
 
 Signups go to a Google Sheet: the server action posts each email to a Google Apps
-Script web app, which adds a row (skipping emails already on the list). No email is
-sent to the person; we contact them ourselves.
+Script web app, which adds a row, or replies "exists" if the email is already on the
+list. No email is sent to the person; we contact them ourselves.
+
+Google sometimes saves the email but then replies slowly or with a 404, so the server
+action tries up to three times. That's safe because the script never adds an email twice.
 
 ## Setting up the sheet
 
@@ -33,7 +36,8 @@ function doPost(e) {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
     if (sheet.getLastRow() === 0) sheet.appendRow(["Email", "Signed up"]);
     const emails = sheet.getRange("A:A").getValues().flat();
-    if (!emails.includes(email)) sheet.appendRow([email, new Date()]);
+    if (emails.includes(email)) return ContentService.createTextOutput("exists");
+    sheet.appendRow([email, new Date()]);
   } finally {
     lock.releaseLock();
   }
