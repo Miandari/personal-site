@@ -34,7 +34,8 @@ export function SignupForm() {
         </div>
         <div className="mt-5 border-t border-primary/20 pt-5 sm:pl-10">
           <p className="mb-4 text-muted-foreground">
-            Got a minute? Tell us a bit about your experience so we can plan the session.
+            Got a minute? Share a bit about yourself so we can tailor the workshop to your
+            situation.
           </p>
           <Button asChild size="lg" className="glow-green group h-11 px-5 text-base">
             <Link href={`/${WORKSHOP.slug}/survey`}>

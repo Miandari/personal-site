@@ -137,9 +137,8 @@ const questions: SurveyQuestion[] = [
 ];
 
 export const SURVEY = {
-  title: "Help us plan the workshop",
-  intro:
-    "A few quick questions, about a minute. Your answers shape the examples we use on the day.",
+  title: "If you’d care to share a bit about yourself",
+  intro: "This feedback will help us tailor the workshop to your particular situation.",
   questions,
   handOff: {
     name: "handOff",
