@@ -57,7 +57,8 @@ export async function sendToSheet(
       });
       const reply = await response.text();
       if (!response.ok || !replies.includes(reply)) {
-        throw new Error(`${response.status}: ${reply.slice(0, 200)}`);
+        const host = new URL(response.url).hostname;
+        throw new Error(`${response.status} from ${host}: ${describeReply(reply)}`);
       }
       return { saved: true, reply, firstTry: attempt === 1 };
     } catch (error) {
@@ -68,4 +69,16 @@ export async function sendToSheet(
 
   console.error(`[workshop] could not save ${sheet}`, lastError);
   return { saved: false };
+}
+
+// Google reports errors as an HTML page, whose title and text say what went wrong.
+function describeReply(reply: string): string {
+  if (!reply.trimStart().startsWith("<")) return reply.slice(0, 200);
+  const title = reply.match(/<title>([^<]*)<\/title>/i)?.[1]?.trim() ?? "";
+  const text = reply
+    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return `page "${title}": ${text.slice(0, 300)}`;
 }
