@@ -1,9 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { ArrowRight, CircleCheck, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { signUp, type SignupState } from "./actions";
+import { WORKSHOP } from "./content";
+import { Honeypot } from "./honeypot";
 
 const initialState: SignupState = { status: "idle" };
 
@@ -14,18 +17,31 @@ export function SignupForm() {
     return (
       <div
         role="status"
-        className="flex gap-4 rounded-xl border border-primary/40 bg-primary/5 p-5 animate-fade-in-up"
+        className="rounded-xl border border-primary/40 bg-primary/5 p-5 animate-fade-in-up"
       >
-        <CircleCheck className="mt-0.5 size-6 shrink-0 text-primary" />
-        <div className="space-y-1">
-          <p className="text-lg font-semibold">
-            {state.alreadySignedUp ? "You’re already signed up." : "You’re signed up."}
+        <div className="flex gap-4">
+          <CircleCheck className="mt-0.5 size-6 shrink-0 text-primary" />
+          <div className="space-y-1">
+            <p className="text-lg font-semibold">
+              {state.alreadySignedUp ? "You’re already signed up." : "You’re signed up."}
+            </p>
+            <p className="text-muted-foreground">
+              We’ll be in touch at{" "}
+              <span className="font-medium text-foreground break-all">{state.email}</span>{" "}
+              before the workshop.
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 border-t border-primary/20 pt-5 sm:pl-10">
+          <p className="mb-4 text-muted-foreground">
+            Got a minute? Tell us a bit about your experience so we can plan the session.
           </p>
-          <p className="text-muted-foreground">
-            We’ll be in touch at{" "}
-            <span className="font-medium text-foreground break-all">{state.email}</span>{" "}
-            before the workshop.
-          </p>
+          <Button asChild size="lg" className="glow-green group h-11 px-5 text-base">
+            <Link href={`/${WORKSHOP.slug}/survey`}>
+              Answer a few questions
+              <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Button>
         </div>
       </div>
     );
@@ -73,13 +89,7 @@ export function SignupForm() {
         </Button>
       </div>
 
-      {/* Honeypot: hidden from people and screen readers, filled in by bots. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label>
-          Company
-          <input type="text" name="company" tabIndex={-1} autoComplete="off" />
-        </label>
-      </div>
+      <Honeypot />
 
       {error && (
         <p id="email-error" role="alert" className="mt-3 text-sm text-destructive">
