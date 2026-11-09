@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SETUP, WORKSHOP } from "../content";
+import { SETUP, SURVEY, WORKSHOP } from "../content";
+import { LinkCard } from "../link-card";
 
 export const metadata: Metadata = {
   title: { absolute: `${SETUP.title} · ${WORKSHOP.title}` },
@@ -129,6 +130,13 @@ export default function SetupPage() {
                 </a>
               </Button>
             </Step>
+
+            <LinkCard
+              href={`/${WORKSHOP.slug}/${SURVEY.slug}`}
+              title={SURVEY.linkTitle}
+              description={SURVEY.linkDescription}
+              className="max-w-xl"
+            />
           </div>
         </div>
       </section>

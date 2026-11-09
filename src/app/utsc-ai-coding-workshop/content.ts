@@ -137,6 +137,10 @@ const questions: SurveyQuestion[] = [
 ];
 
 export const SURVEY = {
+  slug: "survey",
+  // Shown on the cards that link to the survey.
+  linkTitle: "Share a bit about yourself",
+  linkDescription: "Optional. It helps us tailor the workshop to your situation.",
   title: "If you’d care to share a bit about yourself",
   intro: "This feedback will help us tailor the workshop to your particular situation.",
   questions,

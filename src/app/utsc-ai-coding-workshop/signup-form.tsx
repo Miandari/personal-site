@@ -5,8 +5,9 @@ import Link from "next/link";
 import { ArrowRight, CircleCheck, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { signUp, type SignupState } from "./actions";
-import { WORKSHOP } from "./content";
+import { SURVEY, WORKSHOP } from "./content";
 import { Honeypot } from "./honeypot";
+import { LinkCard } from "./link-card";
 
 const initialState: SignupState = { status: "idle" };
 
@@ -38,7 +39,7 @@ export function SignupForm() {
             situation.
           </p>
           <Button asChild size="lg" className="glow-green group h-11 px-5 text-base">
-            <Link href={`/${WORKSHOP.slug}/survey`}>
+            <Link href={`/${WORKSHOP.slug}/${SURVEY.slug}`}>
               Answer a few questions
               <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
             </Link>
@@ -50,53 +51,61 @@ export function SignupForm() {
 
   const error = state.status === "error" ? state.message : undefined;
 
+  // After signing up, people get the survey link in the confirmation instead.
   return (
-    <form action={formAction} className="relative">
-      <label htmlFor="email" className="mb-2 block text-sm font-medium">
-        Your email
-      </label>
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          inputMode="email"
-          spellCheck={false}
-          placeholder="you@mail.utoronto.ca"
-          defaultValue={state.status === "error" ? state.email : undefined}
-          aria-invalid={error ? true : undefined}
-          aria-describedby={error ? "email-error" : undefined}
-          className="h-12 min-w-0 rounded-lg sm:flex-1 border border-input bg-background/60 px-4 text-base outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground/60 focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive"
-        />
-        <Button
-          type="submit"
-          size="lg"
-          disabled={pending}
-          className="glow-green group h-12 px-6 text-base"
-        >
-          {pending ? (
-            <>
-              <LoaderCircle className="animate-spin" />
-              Signing up…
-            </>
-          ) : (
-            <>
-              Sign me up
-              <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
-            </>
-          )}
-        </Button>
-      </div>
-
-      <Honeypot />
-
-      {error && (
-        <p id="email-error" role="alert" className="mt-3 text-sm text-destructive">
-          {error}
-        </p>
-      )}
-    </form>
+    <>
+      <form action={formAction} className="relative">
+        <label htmlFor="email" className="mb-2 block text-sm font-medium">
+          Your email
+        </label>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            inputMode="email"
+            spellCheck={false}
+            placeholder="you@mail.utoronto.ca"
+            defaultValue={state.status === "error" ? state.email : undefined}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? "email-error" : undefined}
+            className="h-12 min-w-0 rounded-lg sm:flex-1 border border-input bg-background/60 px-4 text-base outline-none transition-[border-color,box-shadow] placeholder:text-muted-foreground/60 focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring/40 aria-invalid:border-destructive"
+          />
+          <Button
+            type="submit"
+            size="lg"
+            disabled={pending}
+            className="glow-green group h-12 px-6 text-base"
+          >
+            {pending ? (
+              <>
+                <LoaderCircle className="animate-spin" />
+                Signing up…
+              </>
+            ) : (
+              <>
+                Sign me up
+                <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+              </>
+            )}
+          </Button>
+        </div>
+  
+        <Honeypot />
+  
+        {error && (
+          <p id="email-error" role="alert" className="mt-3 text-sm text-destructive">
+            {error}
+          </p>
+        )}
+      </form>
+      <LinkCard
+        href={`/${WORKSHOP.slug}/${SURVEY.slug}`}
+        title={SURVEY.linkTitle}
+        description={SURVEY.linkDescription}
+      />
+    </>
   );
 }

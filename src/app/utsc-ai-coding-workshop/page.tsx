@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { SETUP, WORKSHOP } from "./content";
+import { LinkCard } from "./link-card";
 import { SignupForm } from "./signup-form";
 
 // Signing up can retry a slow Google Apps Script a few times (see sheet.ts).
@@ -51,22 +50,15 @@ export default function WorkshopPage() {
             ))}
           </dl>
           <div
-            className="max-w-xl animate-fade-in-up"
+            className="grid max-w-xl gap-4 animate-fade-in-up"
             style={{ animationDelay: "0.3s", animationFillMode: "backwards" }}
           >
             <SignupForm />
-            <Link
+            <LinkCard
               href={`/${WORKSHOP.slug}/${SETUP.slug}`}
-              className="group mt-6 flex items-center justify-between gap-4 rounded-xl border border-border bg-background/40 px-5 py-4 transition-colors hover:border-primary/50"
-            >
-              <span>
-                <span className="block font-medium">Get your laptop ready</span>
-                <span className="block text-sm text-muted-foreground">
-                  What to install, which coding agent plan to get, and the workshop files.
-                </span>
-              </span>
-              <ArrowRight className="size-5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
-            </Link>
+              title="Get your laptop ready"
+              description="What to install, which coding agent plan to get, and the workshop files."
+            />
           </div>
         </div>
 
