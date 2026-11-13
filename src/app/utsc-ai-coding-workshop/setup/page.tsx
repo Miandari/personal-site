@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SETUP, SURVEY, WORKSHOP } from "../content";
 import { LinkCard } from "../link-card";
+import { Step } from "../step";
 
 export const metadata: Metadata = {
   title: { absolute: `${SETUP.title} · ${WORKSHOP.title}` },
@@ -141,28 +142,5 @@ export default function SetupPage() {
         </div>
       </section>
     </main>
-  );
-}
-
-function Step({
-  number,
-  title,
-  intro,
-  children,
-}: {
-  number: number;
-  title: string;
-  intro?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section>
-      <h2 className="mb-2 flex items-baseline gap-3 text-2xl font-semibold tracking-tight">
-        <span className="font-mono text-base text-primary">0{number}</span>
-        {title}
-      </h2>
-      {intro && <p className="mb-5 text-muted-foreground">{intro}</p>}
-      <div className={intro ? undefined : "mt-5"}>{children}</div>
-    </section>
   );
 }

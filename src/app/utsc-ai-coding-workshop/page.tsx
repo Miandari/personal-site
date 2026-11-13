@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SETUP, WORKSHOP } from "./content";
 import { LinkCard } from "./link-card";
 import { SignupForm } from "./signup-form";
+import { PART_TWO } from "./part-2/content";
 
 // Signing up can retry a slow Google Apps Script a few times (see sheet.ts).
 export const maxDuration = 60;
@@ -58,6 +59,11 @@ export default function WorkshopPage() {
               href={`/${WORKSHOP.slug}/${SETUP.slug}`}
               title="Get your laptop ready"
               description="What to install, which coding agent plan to get, and the workshop files."
+            />
+            <LinkCard
+              href={`/${WORKSHOP.slug}/${PART_TWO.slug}`}
+              title={`Part two: ${PART_TWO.title.toLowerCase()}`}
+              description="The data and the prompts for the hands-on part."
             />
           </div>
         </div>

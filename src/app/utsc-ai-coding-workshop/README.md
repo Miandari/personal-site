@@ -6,9 +6,11 @@ see `next.config.ts`):
 - `/`: signup.
 - `/survey`: a short survey, linked from the signup confirmation.
 - `/setup`: what to install, coding agent plans, and the workshop files.
+- `/part-2`: the data and prompts for part two ("Talking to agents"). The data zip is
+  `public/documents/tuning-workshop.zip`.
 
 Everything for the workshop lives in this folder. The page copy, survey questions and
-setup links are in `content.ts`.
+setup links are in `content.ts`; part two's prompts are in `part-2/content.ts`.
 
 Each form saves to its own Google Sheet, through a Google Apps Script web app attached
 to that sheet (`sheet.ts`):
